@@ -7,8 +7,8 @@ setup(
     include_package_data=True,
     package_data={
         '': ['*.sh', '*.yml'],
-        'NikGapps.helper': ['assets/*'],
-        'NikGapps.helper.assets': ['*'],
+        'nikassets.helper': ['assets/*'],
+        'nikassets.helper.assets': ['*'],
     },
     author="Nikhil Menghani",
     author_email="nikhil@menghani.com",
