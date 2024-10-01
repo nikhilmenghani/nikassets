@@ -1,4 +1,6 @@
+import glob
 import os
+import platform
 from importlib import resources
 from pathlib import Path
 
@@ -16,6 +18,28 @@ class Assets:
                     assets_folder = str(folders)
                     break
     cwd = assets_folder + os.path.sep
+    system_name = platform.system()
+    if system_name == "Windows":
+        aapt_path = os.path.join(assets_folder, 'bin', system_name, 'aapt2.exe')
+        adb_path = os.path.join(assets_folder, 'bin', system_name, 'adb.exe')
+    elif system_name == "Linux":
+        aapt_path = os.path.join(assets_folder, 'bin', system_name, 'aapt2')
+        adb_path = "adb"
+    elif system_name == "Darwin":
+        aapt_path = os.path.join(assets_folder, 'bin', system_name, 'aapt2')
+        if not os.path.exists(aapt_path):
+            sdk_path = os.environ.get("ANDROID_HOME") or os.environ.get("ANDROID_SDK_ROOT")
+            if not sdk_path:
+                raise EnvironmentError("Android SDK path not found. "
+                                       "Set ANDROID_HOME or ANDROID_SDK_ROOT environment variable.")
+            search_pattern = os.path.join(sdk_path, "build-tools", "*", "aapt")
+            aapt_paths = glob.glob(search_pattern)
+            if aapt_paths:
+                aapt_path = str(max(aapt_paths, key=os.path.getmtime))
+        adb_path = "adb"
+    else:
+        aapt_path = "adb"
+        adb_path = "aapt2"
 
     @staticmethod
     def get(file_name):
