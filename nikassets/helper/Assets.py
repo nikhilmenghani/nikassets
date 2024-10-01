@@ -19,6 +19,8 @@ class Assets:
                     break
     cwd = assets_folder + os.path.sep
     system_name = platform.system()
+    aapt_path = "adb"
+    adb_path = "aapt2"
     if system_name == "Windows":
         aapt_path = os.path.join(assets_folder, 'bin', system_name, 'aapt2.exe')
         adb_path = os.path.join(assets_folder, 'bin', system_name, 'adb.exe')
@@ -37,9 +39,6 @@ class Assets:
             if aapt_paths:
                 aapt_path = str(max(aapt_paths, key=os.path.getmtime))
         adb_path = "adb"
-    else:
-        aapt_path = "adb"
-        adb_path = "aapt2"
 
     @staticmethod
     def get(file_name):
