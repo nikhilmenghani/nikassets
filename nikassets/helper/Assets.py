@@ -26,7 +26,6 @@ class Assets:
         adb_path = os.path.join(assets_folder, 'bin', system_name, 'adb.exe')
     elif system_name == "Linux":
         aapt_path = os.path.join(assets_folder, 'bin', system_name, 'aapt2')
-        adb_path = "adb"
     elif system_name == "Darwin":
         aapt_path = os.path.join(assets_folder, 'bin', system_name, 'aapt2')
         if not os.path.exists(aapt_path):
@@ -38,7 +37,6 @@ class Assets:
             aapt_paths = glob.glob(search_pattern)
             if aapt_paths:
                 aapt_path = str(max(aapt_paths, key=os.path.getmtime))
-        adb_path = "adb"
 
     @staticmethod
     def get(file_name):
