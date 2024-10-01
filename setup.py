@@ -7,8 +7,13 @@ setup(
     include_package_data=True,
     package_data={
         '': ['*.sh', '*.yml'],
-        'nikassets.helper': ['assets/*'],
-        'nikassets.helper.assets': ['*'],
+        'nikassets.helper': [
+            'assets/*',
+            'assets/bin/*',
+            'assets/bin/Darwin/*',
+            'assets/bin/Linux/*',
+            'assets/bin/Windows/*',
+        ],
     },
     author="Nikhil Menghani",
     author_email="nikhil@menghani.com",
@@ -17,7 +22,7 @@ setup(
     long_description_content_type='text/markdown',
     url="https://github.com/nikhilmenghani/nikassets",
     install_requires=[
-        'setuptools>=72.1.0',
+        'setuptools>=75.1.0',
     ],
     entry_points={
         'console_scripts': [
