@@ -21,6 +21,7 @@ class Assets:
     system_name = platform.system()
     aapt_path = "adb"
     adb_path = "aapt2"
+    gofile_path = os.path.join(assets_folder, 'gofile.sh')
     if system_name == "Windows":
         aapt_path = os.path.join(assets_folder, 'bin', system_name, 'aapt2.exe')
         adb_path = os.path.join(assets_folder, 'bin', system_name, 'adb.exe')
