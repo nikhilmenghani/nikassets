@@ -6,8 +6,7 @@ from pathlib import Path
 
 
 class Assets:
-    with resources.files('nikassets.helper').joinpath('assets') as asset_path:
-        assets_folder = str(asset_path)
+    assets_folder = str(resources.files('nikassets.helper').joinpath('assets'))
     if not os.path.exists(assets_folder):
         assets_folder = os.path.join(os.getcwd(), 'assets')
     if not os.path.exists(assets_folder):
